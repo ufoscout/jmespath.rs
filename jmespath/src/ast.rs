@@ -4,15 +4,15 @@
 //! which an expression was parsed and which features are utilized in
 //! an expression.
 //!
-//! Ast can be accessed directly from a parsed `jmespath::Expression`
+//! Ast can be accessed directly from a parsed `jmespatch::Expression`
 //! using the `as_ast()` method. An Ast can be created by using the
-//! `jmespath::parse()` function which returns an Ast rather than an
+//! `jmespatch::parse()` function which returns an Ast rather than an
 //! `Expression`.
 //!
 //! ```
-//! use jmespath;
+//! use jmespatch;
 //!
-//! let ast = jmespath::parse("a || b && c").unwrap();
+//! let ast = jmespatch::parse("a || b && c").unwrap();
 //! ```
 
 use std::fmt;

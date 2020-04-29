@@ -6,7 +6,7 @@
 use serde_json::Value;
 use std::fmt;
 
-use jmespath::{compile, Expression, Rcvar, RuntimeError, Variable};
+use jmespatch::{compile, Expression, Rcvar, RuntimeError, Variable};
 
 /// Avaliable benchmark types.
 pub enum BenchType {
@@ -121,7 +121,7 @@ impl Assertion {
                 }
             }
             &Assertion::Error(ref error_type) => {
-                use jmespath::ErrorReason::*;
+                use jmespatch::ErrorReason::*;
                 let result = self.try_parse(suite, case);
                 match error_type {
                     &ErrorType::InvalidArity => match result?.search(given).map_err(|e| e.reason) {

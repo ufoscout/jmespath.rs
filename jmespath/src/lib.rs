@@ -2,19 +2,19 @@
 //!
 //! # Compiling JMESPath expressions
 //!
-//! Use the `jmespath::compile` function to compile JMESPath expressions
+//! Use the `jmespatch::compile` function to compile JMESPath expressions
 //! into reusable `Expression` structs. The `Expression` struct can be
 //! used multiple times on different values without having to recompile
 //! the expression.
 //!
 //! ```
-//! use jmespath;
+//! use jmespatch;
 //!
-//! let expr = jmespath::compile("foo.bar | baz").unwrap();
+//! let expr = jmespatch::compile("foo.bar | baz").unwrap();
 //!
 //! // Parse some JSON data into a JMESPath variable
 //! let json_str = "{\"foo\":{\"bar\":{\"baz\":true}}}";
-//! let data = jmespath::Variable::from_json(json_str).unwrap();
+//! let data = jmespatch::Variable::from_json(json_str).unwrap();
 //!
 //! // Search the data with the compiled expression
 //! let result = expr.search(data).unwrap();
@@ -25,10 +25,10 @@
 //! AST from the `Expression` struct:
 //!
 //! ```
-//! use jmespath;
-//! use jmespath::ast::Ast;
+//! use jmespatch;
+//! use jmespatch::ast::Ast;
 //!
-//! let expr = jmespath::compile("foo").unwrap();
+//! let expr = jmespatch::compile("foo").unwrap();
 //! assert_eq!("foo", expr.as_str());
 //! assert_eq!(&Ast::Field {name: "foo".to_string(), offset: 0}, expr.as_ast());
 //! ```
@@ -36,8 +36,8 @@
 //! ## JMESPath variables
 //!
 //! In order to evaluate expressions against a known data type, the
-//! `jmespath::Variable` enum is used as both the input and output type.
-//! More specifically, `Rcvar` (or `jmespath::Rcvar`) is used to allow
+//! `jmespatch::Variable` enum is used as both the input and output type.
+//! More specifically, `Rcvar` (or `jmespatch::Rcvar`) is used to allow
 //! shared, reference counted data to be used by the JMESPath interpreter at
 //! runtime.
 //!
@@ -45,9 +45,9 @@
 //! the `sync` feature, you can utilize an `std::sync::Arc<Variable>` to
 //! share `Expression` structs across threads.
 //!
-//! Any type that implements `jmespath::ToJmespath` can be used in a JMESPath
+//! Any type that implements `jmespatch::ToJmespath` can be used in a JMESPath
 //! Expression. Various types have default `ToJmespath` implementations,
-//! including `serde::ser::Serialize`. Because `jmespath::Variable` implements
+//! including `serde::ser::Serialize`. Because `jmespatch::Variable` implements
 //! `serde::ser::Serialize`, many existing types can be searched without needing
 //! an explicit coercion, and any type that needs coercion can be implemented
 //! using serde's macros or code generation capabilities. This includes a
@@ -61,15 +61,15 @@
 //! # Custom Functions
 //!
 //! You can register custom functions with a JMESPath expression by using
-//! a custom `Runtime`. When you call `jmespath::compile`, you are using a
+//! a custom `Runtime`. When you call `jmespatch::compile`, you are using a
 //! shared `Runtime` instance that is created lazily using `lazy_static`.
 //! This shared `Runtime` utilizes all of the builtin JMESPath functions
 //! by default. However, custom functions may be utilized by creating a custom
 //! `Runtime` and compiling expressions directly from the `Runtime`.
 //!
 //! ```
-//! use jmespath::{Runtime, Context, Rcvar};
-//! use jmespath::functions::{CustomFunction, Signature, ArgumentType};
+//! use jmespatch::{Runtime, Context, Rcvar};
+//! use jmespatch::functions::{CustomFunction, Signature, ArgumentType};
 //!
 //! // Create a new Runtime and register the builtin JMESPath functions.
 //! let mut runtime = Runtime::new();
@@ -373,8 +373,8 @@ pub struct Expression<'a> {
 impl<'a> Expression<'a> {
     /// Creates a new JMESPath expression.
     ///
-    /// Normally you will create expressions using either `jmespath::compile()`
-    /// or using a jmespath::Runtime.
+    /// Normally you will create expressions using either `jmespatch::compile()`
+    /// or using a jmespatch::Runtime.
     #[inline]
     pub fn new<S>(expression: S, ast: Ast, runtime: &'a Runtime) -> Expression<'a>
     where
