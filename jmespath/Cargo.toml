@@ -1,13 +1,13 @@
 [package]
 name = "jmespatch"
 version = "0.3.0"
-authors = ["Michael Dowling <mtdowling@gmail.com>"]
+authors = ["Francesco Cina <ufoscout@gmail.com>"]
 description = "Rust implementation of JMESPath, a query language for JSON"
-readme = "README.md"
+readme = "../README.md"
 keywords = ["json", "jmespath", "query"]
-homepage = "https://github.com/jmespath/jmespath.rs"
-repository = "https://github.com/jmespath/jmespath.rs"
-documentation = "https://docs.rs/jmespath/"
+homepage = "https://github.com/ufoscout/jmespath.rs"
+repository = "https://github.com/ufoscout/jmespath.rs"
+documentation = "https://docs.rs/jmespatch/"
 license = "MIT"
 build = "build.rs"
 edition = "2018"

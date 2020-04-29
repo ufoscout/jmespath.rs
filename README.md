@@ -2,7 +2,7 @@
 
 Rust implementation of [JMESPath](http://jmespath.org), a query language for JSON.
 
-[Documentation](https://docs.rs/jmespath/)
+[Documentation](https://docs.rs/jmespatch/)
 
 # Difference with Jmespath (note path!=patch)
 This repository was created with the only purpose of preparing a PR for the original jmespath.rs library.
